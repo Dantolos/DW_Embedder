@@ -3,7 +3,7 @@
 /**
  * Plugin Name: DW Embedder
  * Description: Allow to create embeds of posts
- * Version: 1.03
+ * Version: 1.04
  * Author: Aaron Giaimo
  * Author URI: https://github.com/Dantolos
  */
@@ -46,7 +46,7 @@
                     <div class="dw-teaser-image" style="background-image:url(' . esc_url($post_thumbnail) . ');"></div>
                     <div class="dw-teaser-content">
                         <p>'.esc_html($domain).'</p>
-                        <h2>' . esc_html($post_title) . 'dsafasf</h2>
+                        <h2>' . esc_html($post_title) . '</h2>
                         <p style="font-size:18px;">'.esc_html($post_excerpt).' ...</p>
                     </div>
                 </div>

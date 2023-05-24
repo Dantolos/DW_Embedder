@@ -3,6 +3,8 @@
 body {margin:0 !important; }
 a { color: var(--dw_maincolor); text-decoration: none; }
 
+:root { font-family: 'Source Sans Pro', 'Nunito', Helvetica, Arial, sans-serif !important;}
+
 .post-teaser {  
     border-radius: 20px;
     overflow:hidden;
@@ -16,6 +18,8 @@ a { color: var(--dw_maincolor); text-decoration: none; }
     position:relative;
     color: var(--dw_maincolor);
     height:180px;
+    transform: all();
+    transition-duration: 200ms; 
 }
 
 .dw-teaser-image {
@@ -59,6 +63,9 @@ a { color: var(--dw_maincolor); text-decoration: none; }
 .dw-teaser-content > p { margin:0; }
 
 
+.post-teaser:hover{
+    border-radius: 10px;
+}
 
 .post-teaser:hover .dw-teaser-image {
     width:0;
