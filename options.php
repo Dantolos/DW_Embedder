@@ -2,8 +2,8 @@
 
 function post_teaser_embed_settings_page() {
     add_options_page(
-        'Post Teaser Embed Settings',
-        'Post Teaser Embed',
+        'DW Embedder',
+        'DW Embedder',
         'manage_options',
         'post-teaser-embed-settings',
         'post_teaser_embed_settings_page_content'
@@ -31,12 +31,12 @@ function post_teaser_embed_settings_page_content() {
         .iframe-snipped  { color: white !important;}
     </style>
     <div class="wrap">
-        <h1>Post Teaser Embed Settings</h1>
+        <h1>DW Embedder</h1>
         <form method="post">
             <?php wp_nonce_field('post_teaser_embed_settings'); ?>
             <table class="form-table">
                 <tr>
-                    <th scope="row"><label for="post_teaser_embed_font_color">Font Color</label></th>
+                    <th scope="row"><label for="post_teaser_embed_font_color">Color</label></th>
                     <td>
                         <input type="text" name="post_teaser_embed_font_color" id="post_teaser_embed_font_color" class="regular-text" value="<?php echo esc_attr($font_color); ?>" />
                     </td>

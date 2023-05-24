@@ -21,60 +21,24 @@
         $post_thumbnail = get_the_post_thumbnail_url($post_id) ?: '';
         $post_excerpt = trimString(get_the_excerpt($post_id));
         
+        $css_file_path = __DIR__.'/style.css';
+        $css_string = file_get_contents($css_file_path);
 
         $color = get_option('post_teaser_embed_font_color', '#ffffff');
  
         $home_url = home_url();
         $parsed_url = parse_url($home_url);
         $domain = $parsed_url['host'];
-      
+        
+
 
         $teaser_html = '
-            <style>
-                /* Custom CSS styles for the post teaser */
-                body {margin:0 !important; }
-                a { color: '.$color.'; text-decoration: none; }
-                .post-teaser {
-                    background-color: '.$color.'15;
-                    border-radius: 20px;
-                    overflow:hidden;
-                    display: flex;
-                    flex-direction:row;
-                    flex-wrap: nowrap;
-                    justify-content:left;
-                    align-items:stretch;
-                    padding:0;
-                    
-                    position:relative;
-                   
-                    height:180px;
-                }
-                .post-teaser a {
-                    /* Add your CSS styles here */
-                }
-                .dw-teaser-image {
-                    width: 40%;
-                   background-position: center;
-                    background-size: cover;
-                }
-                .dw-teaser-content {
-                    width:60%;
-                    padding:20px 30px;
-                
-                    display:flex;
-                    flex-direction:column;
-                    justify-content:center;
-                }
-                .dw-teaser-content::after {
-                    position:absolute;
-                    content:"⬤⬤⬤⬤";
-                    top: 20px;
-                    right: 20px;
-                    color: '.$color.';
-                    font-size: 12px;
-                }
-                .dw-teaser-content > h2 { margin:10px 0; }
-                .dw-teaser-content > p { margin:0; }v
+            <style> 
+                :root { 
+                    --dw_maincolor: '.$color.';
+                    --dw_lightcolor: '.$color.'20;
+                }                
+                '.$css_string.'
             </style>
             <div>
             <a href="' . esc_url($post_permalink) . '" target="_blank">
@@ -84,7 +48,7 @@
                         <p>'.esc_html($domain).'</p>
                         <h2>' . esc_html($post_title) . 'dsafasf</h2>
                         <p style="font-size:18px;">'.esc_html($post_excerpt).' ...</p>
-                    </div> 
+                    </div>
                 </div>
             </a>
             </div>
