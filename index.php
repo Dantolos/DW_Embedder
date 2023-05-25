@@ -3,7 +3,7 @@
 /**
  * Plugin Name: DW Embedder
  * Description: Allow to create embeds of posts
- * Version: 1.05
+ * Version: 1.06
  * Author: Aaron Giaimo
  * Author URI: https://github.com/Dantolos
  */
