@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; 
+}
+
 function post_teaser_embed_settings_page() {
     add_options_page(
         'DW Embedder',

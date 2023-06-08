@@ -3,13 +3,13 @@
 /**
  * Plugin Name: DW Embedder
  * Description: Allow to create embeds of posts
- * Version: 1.07
+ * Version: 1.08
  * Author: Aaron Giaimo
  * Author URI: https://github.com/Dantolos
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit;
 }
 
 require_once(__DIR__.'/options.php');
