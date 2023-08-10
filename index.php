@@ -3,7 +3,7 @@
 /**
  * Plugin Name: DW Embedder
  * Description: Allow to create embeds of posts
- * Version: 1.08
+ * Version: 1.09
  * Author: Aaron Giaimo
  * Author URI: https://github.com/Dantolos
  */
@@ -23,16 +23,24 @@ function post_teaser_embed_endpoint() {
         $post_title = get_the_title($post_id);
         $post_permalink = get_permalink($post_id);
         $post_thumbnail = get_the_post_thumbnail_url($post_id) ?: '';
-        $post_excerpt = trimString(get_the_excerpt($post_id));
+        $post_excerpt = trimString(get_field('lead', $post_id)) ?: '';
         
         $css_file_path = __DIR__.'/style.css';
         $css_string = file_get_contents($css_file_path);
 
         $color = get_option('post_teaser_embed_font_color', '#ffffff');
  
+        $domain = '';
         $home_url = home_url();
         $parsed_url = parse_url($home_url);
-        $domain = $parsed_url['host'];
+        if (isset($parsed_url['host'])) {
+            $host = $parsed_url['host'];
+            $host_parts = explode('.', $host);
+            array_pop($host_parts);
+            $host_without_tld = implode('.', $host_parts);
+            $home_url = $host_without_tld;
+        } 
+        $domain = $home_url;
         
 
 
