@@ -26,7 +26,7 @@ function post_teaser_embed_settings_page_content() {
     }
 
     $font_color = get_option('post_teaser_embed_font_color', '#000000');
-    $iFrame_snippet = '<iframe src="***URL***/?embed=true" width="100%" height="180px"></iframe>';
+    $iFrame_snippet = '<iframe src="***URL***/?embed=true" width="100%" height="220px"></iframe>';
 
     // Display the settings form
     ?>

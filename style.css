@@ -1,6 +1,6 @@
 
 
-body {margin:0 !important; }
+body {margin:0 !important; overflow: hidden;}
 a { color: var(--dw_maincolor); text-decoration: none; }
 
 :root { font-family: 'Source Sans Pro', 'Nunito', Helvetica, Arial, sans-serif !important;}
@@ -17,9 +17,10 @@ a { color: var(--dw_maincolor); text-decoration: none; }
     background-color: var(--dw_lightcolor);
     position:relative;
     color: var(--dw_maincolor);
-    height:180px;
+    height:220px;
     transform: all();
     transition-duration: 200ms; 
+
 }
 
 .dw-teaser-image {
@@ -46,7 +47,9 @@ a { color: var(--dw_maincolor); text-decoration: none; }
     font-size: 12px;
     transform: all();
     transition-duration: 200ms;
+    visibility: visible;
 }
+
 .dw-teaser-content::after {
     position:absolute;
     content:"➜";
@@ -79,4 +82,21 @@ a { color: var(--dw_maincolor); text-decoration: none; }
 .post-teaser:hover .dw-teaser-content::before {
     opacity:0;
     right: 800px;
+}
+
+@media (max-width: 600px) {
+    .dw-teaser-content::before {
+        visibility: hidden;
+    }
+
+    .dw-teaser-content > h2 { font-size:20px !important; }
+
+    .dw-teaser-image {
+        width: 0;
+        visibility: hidden;
+    }
+
+    .dw-teaser-content {
+        width: 100%;
+    }
 }
