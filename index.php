@@ -40,27 +40,21 @@ function post_teaser_embed_endpoint() {
         } 
         $domain = $home_url;
         
-        $teaser_html = '
-            <style> 
-                :root { 
-                    --dw_maincolor: '.$color.';
-                    --dw_lightcolor: '.$color.'20;
-                }                
-                '.$css_string.'
-            </style>
-            <div>
-            <a href="' . esc_url($post_permalink) . '" target="_blank">
-                <div class="post-teaser"> 
-                    <div class="dw-teaser-image" style="background-image:url(' . esc_url($post_thumbnail) . ');"></div>
-                    <div class="dw-teaser-content">
-                        <p>'.esc_html($domain).'</p>
-                        <h2>' . esc_html($post_title) . '</h2>
-                        <p style="font-size:16px;">'.$post_excerpt.' ...</p>
-                    </div>
-                </div>
-            </a>
-            </div>
-        ';
+        $teaser_html = '<style> :root { --dw_maincolor: '.$color.'; --dw_lightcolor: '.$color.'20; } '.$css_string.' </style>';
+        $teaser_html .= '<div>';
+            $teaser_html .= '<a href="' . esc_url($post_permalink) . '" target="_blank">';
+                $teaser_html .= '<div class="post-teaser">';
+                    // Teaser Image
+                    $teaser_html .= '<div class="dw-teaser-image" style="background-image:url(' . esc_url($post_thumbnail) . ');"></div>';
+                    // Teaser Content
+                    $teaser_html .= '<div class="dw-teaser-content">';
+                        $teaser_html .= '<p>'.esc_html($domain).'</p>';
+                        $teaser_html .= '<h2>' . esc_html($post_title) . '</h2>';
+                        $teaser_html .= '<p style="font-size:16px;">'.$post_excerpt.' ...</p>';
+                    $teaser_html .= '</div>';
+                $teaser_html .= '</div>';
+            $teaser_html .= '</a>';
+        $teaser_html .= '</div>';
 
         header('Content-Type: text/html');
         echo $teaser_html;
