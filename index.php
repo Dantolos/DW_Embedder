@@ -3,7 +3,7 @@
 /**
  * Plugin Name: DW Embedder
  * Description: Allow to create embeds of posts
- * Version: 1.12
+ * Version: 1.13
  * Author: Aaron Giaimo
  * Author URI: https://github.com/Dantolos
  */
@@ -22,6 +22,7 @@ function post_teaser_embed_endpoint() {
         $post_permalink = get_permalink($post_id);
         $post_thumbnail = get_the_post_thumbnail_url($post_id) ?: '';
         $post_excerpt = trimString(get_field('lead', $post_id)) ?: '';
+        
         
         $css_file_path = __DIR__.'/style.css';
         $css_string = file_get_contents($css_file_path);
@@ -50,7 +51,7 @@ function post_teaser_embed_endpoint() {
                     $teaser_html .= '<div class="dw-teaser-content">';
                         $teaser_html .= '<p>'.esc_html($domain).'</p>';
                         $teaser_html .= '<h2>' . esc_html($post_title) . '</h2>';
-                        $teaser_html .= '<p style="font-size:16px;">'.$post_excerpt.' ...</p>';
+                        $teaser_html .= '<p style="font-size:16px;">'.closetags($post_excerpt).' ...</p>';
                     $teaser_html .= '</div>';
                 $teaser_html .= '</div>';
             $teaser_html .= '</a>';
@@ -70,4 +71,25 @@ function trimString($text) {
     return ($lastSpaceIndex !== false) ? substr($trimmedText, 0, $lastSpaceIndex) : $trimmedText;
 }
 
+function closetags($html) {
+    preg_match_all('#<([a-z]+)(?: .*)?(?<![/|/ ])>#iU', $html, $result);
+    $openedtags = $result[1];
+    preg_match_all('#</([a-z]+)>#iU', $html, $result);
+
+    $closedtags = $result[1];
+    $len_opened = count($openedtags);
+
+    if (count($closedtags) == $len_opened) {
+        return $html;
+    }
+    $openedtags = array_reverse($openedtags);
+    for ($i=0; $i < $len_opened; $i++) {
+        if (!in_array($openedtags[$i], $closedtags)) {
+            $html .= '</'.$openedtags[$i].'>';
+        } else {
+            unset($closedtags[array_search($openedtags[$i], $closedtags)]);
+        }
+    }
+    return $html;
+}
 ?>
